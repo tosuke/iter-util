@@ -1,4 +1,4 @@
-import { isIterable, AnyIterable, OperatorFunction } from '../utils'
+import { isIterable, OperatorFunction } from '../utils'
 
 type ForeachFunction<T, U> = OperatorFunction<T, U extends Promise<any> ? Promise<void> : void, Promise<void>>
 

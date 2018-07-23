@@ -25,8 +25,6 @@ function pipeFunc<T, U>(this: T, ...funcs: UF<any, any>[]): U {
   return funcs.reduce<any>((val, uf) => uf(val), this) as U
 }
 
-type a = typeof pipeFunc
-
 export const pipe = Symbol('pipe')
 
 declare global {

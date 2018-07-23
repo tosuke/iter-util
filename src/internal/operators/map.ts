@@ -1,4 +1,4 @@
-import { isIterable, AnyIterable, OperatorFunction } from '../utils'
+import { isIterable, OperatorFunction } from '../utils'
 
 type MapFunction<T, U> = OperatorFunction<T, Iterable<U>, AsyncIterable<U>>
 

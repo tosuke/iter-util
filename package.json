@@ -15,6 +15,7 @@
     "dev": "jest --watch",
     "test": "jest",
     "coverage": "jest --coverage",
+    "typecheck": "tsc --noEmit",
     "fmt": "prettier --write 'src/**/*.ts' 'tsconfig/*.json' '*.{js,json}'",
     "clean": "rimraf lib",
     "build": "run-p build:*",
@@ -33,7 +34,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "run-s test lint-staged"
+      "pre-commit": "run-s test typecheck lint-staged"
     }
   },
   "devDependencies": {
