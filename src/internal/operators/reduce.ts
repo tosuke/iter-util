@@ -1,6 +1,6 @@
-import { isIterable, AnyIterable } from '../utils'
+import { isIterable, AnyIterable, OperatorFunction } from '../utils'
 
-type ReduceFunction<T, U> = <Iter extends AnyIterable<T>>(iter: Iter) => Iter extends Iterable<T> ? U : Promise<U>
+type ReduceFunction<T, U> = OperatorFunction<T, U, Promise<U>>
 
 export function reduce<T, U = T>(reducer: (previous: U, current: T) => U, initialValue?: U): ReduceFunction<T, U> {
   return <ReduceFunction<T, U>>(

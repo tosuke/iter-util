@@ -1,8 +1,6 @@
-import { isIterable, AnyIterable } from '../utils'
+import { isIterable, AnyIterable, OperatorFunction } from '../utils'
 
-type ForeachFunction<T, U> = <Iter extends AnyIterable<T>>(
-  iter: Iter,
-) => Iter extends AsyncIterable<any> ? Promise<void> : (U extends Promise<any> ? Promise<void> : void)
+type ForeachFunction<T, U> = OperatorFunction<T, U extends Promise<any> ? Promise<void> : void, Promise<void>>
 
 export function forEach<T, U>(func: (x: T) => U): ForeachFunction<T, U> {
   return <ForeachFunction<T, U>>(

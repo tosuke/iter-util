@@ -1,8 +1,6 @@
-import { isIterable, AnyIterable } from '../utils'
+import { isIterable, AnyIterable, OperatorFunction } from '../utils'
 
-type MapFunction<T, U> = <Iter extends AnyIterable<T>>(
-  x: Iter,
-) => Iter extends Iterable<T> ? Iterable<U> : AsyncIterable<U>
+type MapFunction<T, U> = OperatorFunction<T, Iterable<U>, AsyncIterable<U>>
 
 export function map<T, U>(func: (x: T) => U): MapFunction<T, U> {
   return <MapFunction<T, U>>(
