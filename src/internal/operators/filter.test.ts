@@ -1,4 +1,4 @@
-import { pipe, interval, take, collect, filter } from '@'
+import { pipe, delay, collect, filter } from '@'
 
 test('filter iterable', () => {
   const result = [0, 1, 2, 3][pipe](
@@ -16,11 +16,11 @@ test('filter-is', () => {
   expect(result).toEqual([0, 1, 2, 3])
 })
 
-test('filter asyncIterable', async () => {
-  const result = await interval(100)[pipe](
-    take(4),
+test('filter asyncIterable', () => {
+  const result = [0, 1, 2, 3][pipe](
+    delay(100),
     filter(x => x % 2 === 0),
     collect,
   )
-  expect(result).toEqual([0, 2])
+  expect(result).resolves.toEqual([0, 2])
 })

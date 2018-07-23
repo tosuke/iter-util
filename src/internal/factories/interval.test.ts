@@ -1,9 +1,9 @@
 import { pipe, take, collect, interval } from '@'
 
-test('interval', async () => {
-  const res = await interval(100)[pipe](
+test('interval', () => {
+  const res = interval(100)[pipe](
     take(4),
     collect,
   )
-  expect(res).toEqual([0, 1, 2, 3])
+  expect(res).resolves.toEqual([0, 1, 2, 3])
 })

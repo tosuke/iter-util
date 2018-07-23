@@ -1,4 +1,5 @@
-import { pipe, interval, take, forEach } from '@'
+import { pipe, delay, forEach } from '@'
+import { timer } from '../utils'
 
 test('forEach iterable', () => {
   let res: number[] = []
@@ -17,13 +18,9 @@ test('forEach iterable with async functions', async () => {
   expect(res).toEqual([0, 1, 2, 3])
 })
 
-function timer(ms: number): Promise<void> {
-  return new Promise<void>(res => setTimeout(res, ms))
-}
-
 test('forEach asyncIterable', async () => {
   let res: number[] = []
-  const asyncIter = interval(100)[pipe](take(4))
+  const asyncIter = [0, 1, 2, 3][pipe](delay(100))
   await forEach((n: number) => {
     res.push(n)
   })(asyncIter)

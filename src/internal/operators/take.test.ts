@@ -1,4 +1,4 @@
-import { pipe, interval, collect, take } from '@'
+import { pipe, delay, collect, take } from '@'
 
 test('take iterable', () => {
   const res = [0, 1, 2, 3][pipe](
@@ -8,10 +8,11 @@ test('take iterable', () => {
   expect(res).toEqual([0, 1])
 })
 
-test('take asyncIterable', async () => {
-  const res = await interval(100)[pipe](
+test('take asyncIterable', () => {
+  const res = [0, 1, 2, 3][pipe](
+    delay(100),
     take(2),
     collect,
   )
-  expect(res).toEqual([0, 1])
+  expect(res).resolves.toEqual([0, 1])
 })
