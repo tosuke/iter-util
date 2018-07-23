@@ -1,6 +1,9 @@
 // symbols
 export * from './internal/symbols/pipe'
 
+// factories
+export * from './internal/factories/interval'
+
 // operators
 export * from './internal/operators/collect'
 export * from './internal/operators/filter'
