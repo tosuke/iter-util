@@ -1,4 +1,4 @@
-import { forEach } from './forEach'
+import { forEach } from '@'
 
 test('forEach(Iterable -> void)', () => {
   let res: number[] = []

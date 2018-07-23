@@ -1,5 +1,4 @@
-import { pipe, collect } from '@'
-import { map } from './map'
+import { pipe, collect, map } from '@'
 
 test('map', () => {
   const res = [1, 2, 3][pipe](

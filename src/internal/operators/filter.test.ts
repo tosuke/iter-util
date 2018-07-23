@@ -1,5 +1,4 @@
-import { pipe, collect } from '@'
-import { filter } from './filter'
+import { pipe, collect, filter } from '@'
 
 test('filter', () => {
   const result = [1, 2, 3, 4][pipe](

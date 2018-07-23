@@ -1,4 +1,4 @@
-import { collect } from './collect'
+import { collect } from '@'
 
 test('collect iterator', () => {
   const res = collect([1, 2, 3, 4])
