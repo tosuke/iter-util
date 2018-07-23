@@ -1,4 +1,5 @@
 // symbols
+import './internal/symbols/asyncIterator'
 export * from './internal/symbols/pipe'
 
 // factories
