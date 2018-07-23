@@ -1,6 +1,14 @@
-import { collect } from '@'
+import { pipe, interval, take, collect } from '@'
 
-test('collect iterator', () => {
-  const res = collect([1, 2, 3, 4])
-  expect(res).toEqual([1, 2, 3, 4])
+test('collect iterable', () => {
+  const res = collect([0, 1, 2, 3])
+  expect(res).toEqual([0, 1, 2, 3])
+})
+
+test('collect asyncIterable', async () => {
+  const res = await interval(100)[pipe](
+    take(4),
+    collect,
+  )
+  expect(res).toEqual([0, 1, 2, 3])
 })
