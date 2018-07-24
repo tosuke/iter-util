@@ -1,0 +1,48 @@
+version: 2
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test-node6
+      - test-node8
+      - test-node10
+
+_test-body: &test-body
+  working_directory: ~/workspace
+  steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+    - run:
+        name: System Information
+        command: |
+          echo "Node $(node -v)"
+          echo "Yarn v$(yarn --version)"
+    - save_cache:
+        key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock"}}
+        paths:
+          - ./node_modules
+          - ~/.cache/yarn
+    - run:
+        name: Install Dependencies
+        command: yarn install
+    - run:
+        name: Check Type
+        command: yarn typecheck
+    - run:
+        name: Test
+        command: yarn test
+
+jobs:
+  test-node6:
+    <<: *test-body
+    docker:
+      - image: node:6
+  test-node8:
+    <<: *test-body
+    docker:
+      - image: node:8
+  test-node10:
+    <<: *test-body
+    docker:
+      - image: node:10
