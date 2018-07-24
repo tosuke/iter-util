@@ -27,15 +27,31 @@ _test-body: &test-body
         name: Install Dependencies
         command: yarn install
     - run:
-        name: Check Type
-        command: yarn typecheck
-    - run:
         name: Test
         command: yarn test
 
 _coverage-body: &coverage-body
-  <<: *test-body
+  working_directory: ~/workspace
   steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+    - run:
+        name: System Information
+        command: |
+          echo "Node $(node -v)"
+          echo "Yarn v$(yarn --version)"
+    - save_cache:
+        key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock"}}
+        paths:
+          - ./node_modules
+          - ~/.cache/yarn
+    - run:
+        name: Install Dependencies
+        command: yarn install
+    - run:
+        name: Type check
+        command: yarn typecheck
     - run:
         name: Coverage
         command: yarn coverage
@@ -50,6 +66,10 @@ jobs:
     docker:
       - image: node:8
   test-node10:
+    <<: *test-body
+    docker:
+      - image: node:10
+  coverage-node10:
     <<: *coverage-body
     docker:
       - image: node:10
