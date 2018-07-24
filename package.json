@@ -14,7 +14,9 @@
   "scripts": {
     "dev": "jest --watch",
     "test": "jest",
-    "coverage": "jest --coverage",
+    "coverage": "run-s coverage:jest coverage:codecov",
+    "coverage:jest": "jest --coverage",
+    "coverage:codecov": "codecov",
     "typecheck": "tsc --noEmit",
     "fmt": "prettier --write 'src/**/*.ts' 'tsconfig/*.json' '*.{js,json}'",
     "clean": "rimraf lib",
@@ -41,6 +43,7 @@
     "@tosuke/prettier-config": "^1.0.1",
     "@types/jest": "^23.3.0",
     "@types/node": "^10.5.2",
+    "codecov": "^3.0.4",
     "husky": "^1.0.0-rc.13",
     "jest": "^23.4.1",
     "lint-staged": "^7.2.0",

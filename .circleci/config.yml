@@ -33,6 +33,13 @@ _test-body: &test-body
         name: Test
         command: yarn test
 
+_coverage-body: &coverage-body
+  <<: *test-body
+  steps:
+    - run:
+        name: Coverage
+        command: yarn coverage
+
 jobs:
   test-node6:
     <<: *test-body
@@ -43,6 +50,6 @@ jobs:
     docker:
       - image: node:8
   test-node10:
-    <<: *test-body
+    <<: *coverage-body
     docker:
       - image: node:10
