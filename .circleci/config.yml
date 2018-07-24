@@ -6,6 +6,7 @@ workflows:
       - test-node6
       - test-node8
       - test-node10
+      - coverage-node10
 
 _test-body: &test-body
   working_directory: ~/workspace

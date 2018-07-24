@@ -1,6 +1,7 @@
 # Iter-utils: A composable, tree-shakable iterator extensions
 
 [![CircleCI](https://circleci.com/gh/Tosuke/iter-util/tree/master.svg?style=svg)](https://circleci.com/gh/Tosuke/iter-util/tree/master)
+[![codecov](https://codecov.io/gh/Tosuke/iter-util/branch/master/graph/badge.svg)](https://codecov.io/gh/Tosuke/iter-util)
 
 ## Example
 ```js
