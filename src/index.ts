@@ -4,6 +4,7 @@ export * from './internal/symbols/pipe'
 
 // factories
 export * from './internal/factories/interval'
+export * from './internal/factories/range'
 
 // operators
 export * from './internal/operators/collect'
