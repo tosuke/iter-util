@@ -20,7 +20,7 @@ test('toMap async', async () => {
     delay(100),
     toMap,
   )
-  expect(res).resolves.toEqual(expect.any(Map))
+  await expect(res).resolves.toEqual(expect.any(Map))
   const map2 = await res
   expect(map2.get(0)).toBe('foo')
   expect(map2.get(1)).toBe('bar')

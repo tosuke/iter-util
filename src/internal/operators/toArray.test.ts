@@ -5,10 +5,10 @@ test('collect iterable', () => {
   expect(res).toEqual([0, 1, 2, 3])
 })
 
-test('collect asyncIterable', () => {
+test('collect asyncIterable', async () => {
   const res = [0, 1, 2, 3][pipe](
     delay(100),
     toArray,
   )
-  expect(res).resolves.toEqual([0, 1, 2, 3])
+  await expect(res).resolves.toEqual([0, 1, 2, 3])
 })

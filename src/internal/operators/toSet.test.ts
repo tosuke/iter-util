@@ -14,7 +14,7 @@ test('toSet sync', async () => {
     delay(100),
     toSet,
   )
-  expect(res).resolves.toEqual(expect.any(Set))
+  await expect(res).resolves.toEqual(expect.any(Set))
   const set2 = await res
   expect(set2.has(0)).toBe(true)
   expect(set2.has(1)).toBe(true)

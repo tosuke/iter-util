@@ -1,9 +1,9 @@
 import { pipe, take, toArray, timer } from '@'
 
-test('timer', () => {
+test('timer', async () => {
   const res = timer(200, 100)[pipe](
     take(4),
     toArray,
   )
-  expect(res).resolves.toEqual([200, 100, 100, 100])
+  await expect(res).resolves.toEqual([200, 100, 100, 100])
 })

@@ -16,11 +16,11 @@ test('filter-is', () => {
   expect(result).toEqual([0, 1, 2, 3])
 })
 
-test('filter asyncIterable', () => {
+test('filter asyncIterable', async () => {
   const result = [0, 1, 2, 3][pipe](
     delay(100),
     filter(x => x % 2 === 0),
     toArray,
   )
-  expect(result).resolves.toEqual([0, 2])
+  await expect(result).resolves.toEqual([0, 2])
 })

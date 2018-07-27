@@ -8,11 +8,11 @@ test('take iterable', () => {
   expect(res).toEqual([0, 1])
 })
 
-test('take asyncIterable', () => {
+test('take asyncIterable', async () => {
   const res = [0, 1, 2, 3][pipe](
     delay(100),
     take(2),
     toArray,
   )
-  expect(res).resolves.toEqual([0, 1])
+  await expect(res).resolves.toEqual([0, 1])
 })
