@@ -7,6 +7,7 @@ export * from './internal/factories/interval'
 export * from './internal/factories/timer'
 export * from './internal/factories/range'
 export * from './internal/factories/recurrence'
+export * from './internal/factories/repeat'
 
 // operators
 export * from './internal/operators/toArray'
