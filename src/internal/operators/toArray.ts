@@ -1,4 +1,4 @@
-import { isIterable, AnyIterable, AnyIterableType } from '@/internal/utils'
+import { isIterable, AnyIterable, AnyIterableType } from '../utils'
 
 type ToArrayReturnType<Iter extends AnyIterable<any>> = Iter extends Iterable<any>
   ? AnyIterableType<Iter>[]
