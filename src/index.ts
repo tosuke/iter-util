@@ -10,6 +10,7 @@ export * from './internal/factories/recurrence'
 // operators
 export * from '@/internal/operators/toArray'
 export * from '@/internal/operators/toObject'
+export * from '@/internal/operators/toMap'
 export * from './internal/operators/filter'
 export * from './internal/operators/forEach'
 export * from './internal/operators/map'
