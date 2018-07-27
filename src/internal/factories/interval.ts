@@ -1,9 +1,9 @@
-import { timer } from '../utils'
+import { sleep } from '../utils'
 
 export async function* interval(ms: number): AsyncIterable<number> {
   let counter = 0
   while (true) {
-    await timer(ms)
+    await sleep(ms)
     yield counter++
   }
 }

@@ -1,5 +1,5 @@
 import { pipe, delay, forEach } from '@'
-import { timer } from '../utils'
+import { sleep } from '../utils'
 
 test('forEach iterable', () => {
   let res: number[] = []
@@ -12,7 +12,7 @@ test('forEach iterable', () => {
 test('forEach iterable with async functions', async () => {
   let res: number[] = []
   await forEach(async (n: number) => {
-    await timer(n * 100)
+    await sleep(n * 100)
     res.push(n)
   })([0, 1, 2, 3])
   expect(res).toEqual([0, 1, 2, 3])
