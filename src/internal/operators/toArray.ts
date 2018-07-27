@@ -9,11 +9,7 @@ export function toArray<Iter extends AnyIterable<any>>(iter: Iter): ToArrayRetur
 }
 
 function toArraySync<T>(iter: Iterable<T>): T[] {
-  let array = []
-  for (const value of iter) {
-    array.push(value)
-  }
-  return array
+  return Array.from<T>(iter)
 }
 
 async function toArrayAsync<T>(iter: AsyncIterable<T>): Promise<T[]> {
