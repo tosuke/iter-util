@@ -12,18 +12,19 @@ _test-body: &test-body
   working_directory: ~/workspace
   steps:
     - checkout
-    - restore_cache:
-        key: v1-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ .Environment.NODE }}
     - run:
         name: System Information
         command: |
           echo "Node $(node -v)"
           echo "Yarn v$(yarn --version)"
+          node --version > node_version
+    - restore_cache:
+        key: v1-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum "node_version" }}
     - run:
         name: Install Dependencies
         command: yarn install
     - save_cache:
-        key: v1-{{ .Branch }}-{{ checksum "yarn.lock"}}-{{ .Environment.NODE }}
+        key: v1-{{ .Branch }}-{{ checksum "yarn.lock"}}-{{ checksum "node_version" }}
         paths:
           - ./node_modules
           - ~/.cache/yarn
@@ -35,18 +36,19 @@ _coverage-body: &coverage-body
   working_directory: ~/workspace
   steps:
     - checkout
-    - restore_cache:
-        key: v1-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ .Environment.NODE }}
     - run:
         name: System Information
         command: |
           echo "Node $(node -v)"
           echo "Yarn v$(yarn --version)"
+          node --version > node_version
+    - restore_cache:
+        key: v1-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum "node_version" }}
     - run:
         name: Install Dependencies
         command: yarn install
     - save_cache:
-        key: v1-{{ .Branch }}-{{ checksum "yarn.lock"}}-{{ .Environment.NODE }}
+        key: v1-{{ .Branch }}-{{ checksum "yarn.lock"}}-{{ checksum "node_version" }}
         paths:
           - ./node_modules
           - ~/.cache/yarn
@@ -62,23 +64,15 @@ jobs:
     <<: *test-body
     docker:
       - image: node:6
-    environment:
-      - NODE: 'v6'
   test-node8:
     <<: *test-body
     docker:
       - image: node:8
-    environment:
-      - NODE: 'v8'
   test-node10:
     <<: *test-body
     docker:
       - image: node:10
-    environment:
-      - NODE: 'v10'
   coverage-node10:
     <<: *coverage-body
     docker:
       - image: node:10
-    environment:
-      - NODE: 'v10'
