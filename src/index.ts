@@ -3,6 +3,7 @@ import './internal/symbols/asyncIterator'
 export * from './internal/symbols/pipe'
 
 // factories
+export * from './internal/factories/from'
 export * from './internal/factories/interval'
 export * from './internal/factories/timer'
 export * from './internal/factories/range'
