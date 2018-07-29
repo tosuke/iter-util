@@ -4,7 +4,10 @@ type ToSetReturnType<Iter extends AnyIterable<any>> = Iter extends Iterable<any>
   ? Set<AnyIterableType<Iter>>
   : Promise<Set<AnyIterableType<Iter>>>
 
-export function toSet<Iter extends AnyIterable<any>>(iter: Iter): ToSetReturnType<Iter> {
+export function toSet() {
+  return toSetImpl
+}
+function toSetImpl<Iter extends AnyIterable<any>>(iter: Iter): ToSetReturnType<Iter> {
   return <ToSetReturnType<Iter>>(isIterable(iter) ? toSetSync(iter) : toSetAsync(iter as AsyncIterable<any>))
 }
 

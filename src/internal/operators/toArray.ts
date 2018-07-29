@@ -4,7 +4,11 @@ type ToArrayReturnType<Iter extends AnyIterable<any>> = Iter extends Iterable<an
   ? AnyIterableType<Iter>[]
   : Promise<AnyIterableType<Iter>[]>
 
-export function toArray<Iter extends AnyIterable<any>>(iter: Iter): ToArrayReturnType<Iter> {
+export function toArray() {
+  return toArrayImpl
+}
+
+function toArrayImpl<Iter extends AnyIterable<any>>(iter: Iter): ToArrayReturnType<Iter> {
   return <ToArrayReturnType<Iter>>(isIterable(iter) ? toArraySync(iter) : toArrayAsync(iter as AsyncIterable<any>))
 }
 

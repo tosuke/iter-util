@@ -1,9 +1,9 @@
 import { pipe, toArray, flatAll } from '@'
 
-test('flatAll', () => {
+test('flatAll()', () => {
   const res = [[0, 1], [2, 3]][pipe](
-    flatAll,
-    toArray,
+    flatAll(),
+    toArray(),
   )
   expect(res).toEqual([0, 1, 2, 3])
 })

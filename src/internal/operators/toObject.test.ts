@@ -1,14 +1,14 @@
 import { pipe, delay, toObject } from '@'
 
-test('toObject sync', () => {
-  const res = objectEntries({ a: 1, b: 2 })[pipe](toObject)
+test('toObject() sync', () => {
+  const res = objectEntries({ a: 1, b: 2 })[pipe](toObject())
   expect(res).toEqual({ a: 1, b: 2 })
 })
 
-test('toObject async', async () => {
+test('toObject() async', async () => {
   const res = objectEntries({ a: 1, b: 2 })[pipe](
     delay(100),
-    toObject,
+    toObject(),
   )
   await expect(res).resolves.toEqual({ a: 1, b: 2 })
 })

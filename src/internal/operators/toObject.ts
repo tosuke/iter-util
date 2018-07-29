@@ -4,7 +4,10 @@ type ToObjectReturnType<Iter extends AnyIterable<[string, any]>> = Iter extends 
   ? (Iter extends Iterable<any> ? { [key: string]: Value } : Promise<{ [key: string]: Value }>)
   : never
 
-export function toObject<Iter extends AnyIterable<[string, any]>>(iter: Iter): ToObjectReturnType<Iter> {
+export function toObject() {
+  return toObjectImpl
+}
+function toObjectImpl<Iter extends AnyIterable<[string, any]>>(iter: Iter): ToObjectReturnType<Iter> {
   return <ToObjectReturnType<Iter>>(isIterable(iter) ? toObjectSync(iter) : toObjectAsync(iter as AsyncIterable<any>))
 }
 

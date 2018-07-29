@@ -4,7 +4,11 @@ type ToMapReturnType<Iter extends AnyIterable<[any, any]>> = Iter extends AnyIte
   ? (Iter extends Iterable<any> ? Map<Key, Value> : Promise<Map<Key, Value>>)
   : never
 
-export function toMap<Iter extends AnyIterable<[any, any]>>(iter: Iter): ToMapReturnType<Iter> {
+export function toMap() {
+  return toMapImpl
+}
+
+function toMapImpl<Iter extends AnyIterable<[any, any]>>(iter: Iter): ToMapReturnType<Iter> {
   return <ToMapReturnType<Iter>>(isIterable(iter) ? toMapSync(iter) : toMapAsync(iter as AsyncIterable<any>))
 }
 

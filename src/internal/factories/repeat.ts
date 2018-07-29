@@ -39,7 +39,7 @@ async function* repeatAsyncIterable<T>(iter: AsyncIterable<T>, count: number): A
     yield* iter
     return
   }
-  const buf = await toArray(iter)
+  const buf = await toArray()(iter)
   if (count === Infinity) {
     while (true) {
       yield* buf
