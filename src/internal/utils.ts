@@ -6,6 +6,28 @@ export type OperatorFunction<T, IfIterable, IfAsyncIterable> = <Iter extends Any
 export type UnaryOperatorFunction<T, R> = OperatorFunction<T, Iterable<R>, AsyncIterable<R>>
 export type MonoOperatorFunction<T> = UnaryOperatorFunction<T, T>
 
+type OperatorT<OF extends OperatorFunction<any, any, any>> = OF extends OperatorFunction<infer T, any, any> ? T : never
+type OperatorIfIterable<OF extends OperatorFunction<any, any, any>> = OF extends OperatorFunction<
+  any,
+  infer IfIterable,
+  any
+>
+  ? IfIterable
+  : never
+type OperatorIfAsyncIterable<OF extends OperatorFunction<any, any, any>> = OF extends OperatorFunction<
+  any,
+  any,
+  infer IfAsyncIterable
+>
+  ? IfAsyncIterable
+  : never
+export function operator<OF extends OperatorFunction<any, any, any>>(
+  ifIterable: (iter: Iterable<OperatorT<OF>>) => OperatorIfIterable<OF>,
+  ifAsyncIterable: (iter: AsyncIterable<OperatorT<OF>>) => OperatorIfAsyncIterable<OF>,
+): OF {
+  return <OF>((iter: AnyIterable<any>) => (isIterable(iter) ? ifIterable(iter) : ifAsyncIterable(iter)))
+}
+
 export function isIterable<T = any>(x: any): x is Iterable<T> {
   return x[Symbol.iterator] != null
 }

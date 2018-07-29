@@ -1,10 +1,8 @@
-import { isIterable, UnaryOperatorFunction } from '../utils'
+import { UnaryOperatorFunction, operator } from '../utils'
 
 type MapFunction<T, U> = UnaryOperatorFunction<T, U>
 export function map<T, U>(func: (x: T) => U): MapFunction<T, U> {
-  return <MapFunction<T, U>>(
-    ((iter: Iterable<T> | AsyncIterable<T>) => (isIterable<T>(iter) ? mapSync(iter, func) : mapAsync(iter, func)))
-  )
+  return operator<MapFunction<T, U>>(iter => mapSync(iter, func), iter => mapAsync(iter, func))
 }
 
 function* mapSync<T, U>(iter: Iterable<T>, func: (x: T) => U): Iterable<U> {

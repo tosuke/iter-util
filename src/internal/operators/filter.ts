@@ -1,13 +1,11 @@
-import { isIterable, AnyIterable, UnaryOperatorFunction } from '../utils'
+import { UnaryOperatorFunction, operator } from '../utils'
 
 type FilterFunction<T, U extends T> = UnaryOperatorFunction<T, U>
 
 export function filter<T>(cond: (x: T) => boolean): FilterFunction<T, T>
 export function filter<T, U extends T>(cond: (x: T) => x is U): FilterFunction<T, U>
 export function filter<T>(cond: (x: T) => any): FilterFunction<T, T> {
-  return <FilterFunction<T, any>>(
-    ((iter: AnyIterable<T>) => (isIterable<T>(iter) ? filterSync(iter, cond) : filterAsync(iter, cond)))
-  )
+  return operator<FilterFunction<T, any>>(iter => filterSync(iter, cond), iter => filterAsync(iter, cond))
 }
 
 function* filterSync<T>(iter: Iterable<T>, cond: (x: T) => boolean): Iterable<T> {

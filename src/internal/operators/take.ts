@@ -1,11 +1,9 @@
-import { isIterable, AnyIterable, MonoOperatorFunction } from '../utils'
+import { MonoOperatorFunction, operator } from '../utils'
 
 type TakeFunction<T> = MonoOperatorFunction<T>
 
 export function take<T>(n: number): TakeFunction<T> {
-  return <TakeFunction<T>>(
-    ((iter: AnyIterable<T>) => (isIterable<T>(iter) ? takeToIter(iter, n) : takeToAsyncIter(iter, n)))
-  )
+  return operator<TakeFunction<T>>(iter => takeToIter(iter, n), iter => takeToAsyncIter(iter, n))
 }
 
 function* takeToIter<T>(iter: Iterable<T>, n: number): Iterable<T> {

@@ -1,11 +1,9 @@
-import { isIterable, MonoOperatorFunction, AnyIterable } from '../utils'
+import { MonoOperatorFunction, operator } from '../utils'
 
 type SkipFunction<T> = MonoOperatorFunction<T>
 
 export function skip<T>(n: number): SkipFunction<T> {
-  return <SkipFunction<T>>(
-    ((iter: AnyIterable<T>) => (isIterable<T>(iter) ? skipToIter(iter, n) : skipToAsyncIter(iter, n)))
-  )
+  return operator<SkipFunction<T>>(iter => skipToIter(iter, n), iter => skipToAsyncIter(iter, n))
 }
 
 function* skipToIter<T>(iter: Iterable<T>, n: number): Iterable<T> {

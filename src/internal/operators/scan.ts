@@ -1,12 +1,12 @@
-import { isIterable, AnyIterable, MonoOperatorFunction } from '../utils'
+import { MonoOperatorFunction, operator } from '../utils'
 
 type ScanFunction<T> = MonoOperatorFunction<T>
 
 export function scan<T>(accumulator: (acc: T, value: T) => T, init?: T): ScanFunction<T>
 export function scan<T, U>(accumulator: (acc: U, value: T) => U, init: U): ScanFunction<U> {
-  return <ScanFunction<any>>(
-    ((iter: AnyIterable<T>) =>
-      isIterable<T>(iter) ? scanSync(iter, accumulator, init) : scanAsync(iter, accumulator, init))
+  return operator<ScanFunction<any>>(
+    iter => scanSync(iter, accumulator, init),
+    iter => scanAsync(iter, accumulator, init),
   )
 }
 

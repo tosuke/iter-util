@@ -1,14 +1,12 @@
-import { isIterable, OperatorFunction } from '../utils'
+import { OperatorFunction, operator } from '../utils'
 
 type ForeachFunction<T, U> = OperatorFunction<T, U extends Promise<any> ? Promise<void> : void, Promise<void>>
 
 export function forEach<T, U>(func: (x: T) => U): ForeachFunction<T, U> {
-  return <ForeachFunction<T, U>>(
-    ((iter: AsyncIterable<T>) => (isIterable<T>(iter) ? forEachToIter(iter, func) : forEachToAsyncIter(iter, func)))
-  )
+  return operator<ForeachFunction<T, U>>(iter => forEachToIter(iter, func), iter => forEachToAsyncIter(iter, func))
 }
 
-function forEachToIter<T>(iter: Iterable<T>, func: (x: T) => any): void | Promise<void> {
+function forEachToIter<T, U>(iter: Iterable<T>, func: (x: T) => U): any {
   const iterator = iter[Symbol.iterator]()
   while (true) {
     const res = iterator.next()

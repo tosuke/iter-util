@@ -1,11 +1,11 @@
-import { isIterable, AnyIterable, OperatorFunction } from '../utils'
+import { OperatorFunction, operator } from '../utils'
 
 type ReduceFunction<T, U> = OperatorFunction<T, U, Promise<U>>
 
 export function reduce<T, U = T>(reducer: (previous: U, current: T) => U, initialValue?: U): ReduceFunction<T, U> {
-  return <ReduceFunction<T, U>>(
-    ((iter: AnyIterable<T>) =>
-      isIterable<T>(iter) ? reduceSync(iter, reducer, initialValue) : reduceAsync(iter, reducer, initialValue))
+  return operator<ReduceFunction<T, U>>(
+    iter => reduceSync(iter, reducer, initialValue),
+    iter => reduceAsync(iter, reducer, initialValue),
   )
 }
 
