@@ -54,7 +54,7 @@ async function* zipAsync<TS extends any[]>(iter: AnyIterable<any>[]): AsyncItera
       return () => {
         const res = itor.next()
         done = res.done
-        return Promise.resolve(done ? null : res.value)
+        return done ? null : res.value
       }
     } else {
       const itor = i[Symbol.asyncIterator]()
