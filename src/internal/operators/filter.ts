@@ -1,6 +1,6 @@
-import { isIterable, AnyIterable, OperatorFunction } from '../utils'
+import { isIterable, AnyIterable, UnaryOperatorFunction } from '../utils'
 
-type FilterFunction<T, U extends T> = OperatorFunction<T, Iterable<U>, AsyncIterable<U>>
+type FilterFunction<T, U extends T> = UnaryOperatorFunction<T, U>
 
 export function filter<T>(cond: (x: T) => boolean): FilterFunction<T, T>
 export function filter<T, U extends T>(cond: (x: T) => x is U): FilterFunction<T, U>

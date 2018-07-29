@@ -1,6 +1,6 @@
-import { isIterable, OperatorFunction, AnyIterable } from '../utils'
+import { isIterable, MonoOperatorFunction, AnyIterable } from '../utils'
 
-type SkipFunction<T> = OperatorFunction<T, Iterable<T>, AsyncIterable<T>>
+type SkipFunction<T> = MonoOperatorFunction<T>
 
 export function skip<T>(n: number): SkipFunction<T> {
   return <SkipFunction<T>>(

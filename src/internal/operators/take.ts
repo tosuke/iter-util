@@ -1,6 +1,6 @@
-import { isIterable, AnyIterable, OperatorFunction } from '../utils'
+import { isIterable, AnyIterable, MonoOperatorFunction } from '../utils'
 
-type TakeFunction<T> = OperatorFunction<T, Iterable<T>, AsyncIterable<T>>
+type TakeFunction<T> = MonoOperatorFunction<T>
 
 export function take<T>(n: number): TakeFunction<T> {
   return <TakeFunction<T>>(
