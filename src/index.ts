@@ -9,6 +9,7 @@ export * from './internal/factories/timer'
 export * from './internal/factories/range'
 export * from './internal/factories/recurrence'
 export * from './internal/factories/repeat'
+export * from './internal/factories/zip'
 
 // operators
 export * from './internal/operators/toArray'
