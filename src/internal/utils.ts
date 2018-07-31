@@ -36,6 +36,10 @@ export function isAsyncIterable<T = any>(x: any): x is AsyncIterable<T> {
   return x[Symbol.asyncIterator] != null
 }
 
+export function isAnyIterable<T = any>(x: any): x is AnyIterable<T> {
+  return isIterable<T>(x) || isAsyncIterable<T>(x)
+}
+
 export function sleep(ms: number): Promise<void> {
   return new Promise<void>(res => setTimeout(res, ms))
 }
