@@ -6,7 +6,6 @@ workflows:
       - test-node6
       - test-node8
       - test-node10
-      - coverage-node10
 
 _test-body: &test-body
   working_directory: ~/workspace
@@ -32,7 +31,7 @@ _test-body: &test-body
         name: Test
         command: yarn test
 
-_coverage-body: &coverage-body
+_test-and-coverage-body: &test-and-coverage-body
   working_directory: ~/workspace
   steps:
     - checkout
@@ -56,7 +55,7 @@ _coverage-body: &coverage-body
         name: Type check
         command: yarn typecheck
     - run:
-        name: Coverage
+        name: Test & Coverage
         command: yarn coverage
 
 jobs:
@@ -69,10 +68,6 @@ jobs:
     docker:
       - image: node:8
   test-node10:
-    <<: *test-body
-    docker:
-      - image: node:10
-  coverage-node10:
-    <<: *coverage-body
+    <<: *test-and-coverage-body
     docker:
       - image: node:10
