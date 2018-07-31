@@ -10,6 +10,7 @@ export * from './internal/factories/range'
 export * from './internal/factories/recurrence'
 export * from './internal/factories/repeat'
 export * from './internal/factories/zip'
+export * from './internal/factories/concat'
 
 // operators
 export * from './internal/operators/toArray'
