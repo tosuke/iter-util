@@ -16,3 +16,11 @@ test('concatpMap AsyncIterable', async () => {
   )
   await expect(res).resolves.toEqual([1, 1, 2, 1, 2, 3])
 })
+
+test('concatMap Promise', async () => {
+  const res = [0, 1, 2, 3][pipe](
+    concatMap(x => Promise.resolve(x)),
+    toArray(),
+  )
+  await expect(res).resolves.toEqual([0, 1, 2, 3])
+})
