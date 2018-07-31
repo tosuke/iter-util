@@ -1,7 +1,8 @@
 import { AnyIterable, isIterable } from '../utils'
 
 type UnIter<Iter> = Iter extends AnyIterable<infer S> ? S : never
-type ZipType<IterUnion, Tuple extends any[]> = number extends (IterUnion extends AsyncIterable<any> ? any : never)
+type IsAsyncIterable<T> = T extends AsyncIterable<any> ? 'true' : 'false'
+type ZipType<IterUnion, Tuple extends any[]> = 'true' extends IsAsyncIterable<IterUnion>
   ? AsyncIterable<Tuple>
   : Iterable<Tuple>
 type AI = AnyIterable<any>
