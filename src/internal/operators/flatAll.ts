@@ -1,6 +1,5 @@
+import { IterableType } from '../utils'
 import { flatMap } from './flatMap'
-
-type IterableType<Iter extends Iterable<any>> = Iter extends Iterable<infer T> ? T : never
 
 export function flatAll() {
   return flatAllImpl

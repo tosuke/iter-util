@@ -1,4 +1,7 @@
-export function* recurrence<TS extends any[]>(generator: (...state: TS) => TS[-1], ...init: TS): Iterable<TS[-1]> {
+export function* recurrence<TS extends any[]>(
+  generator: (...state: TS) => TS[number],
+  ...init: TS
+): Iterable<TS[number]> {
   while (true) {
     const value = generator(...init)
     yield init.shift()

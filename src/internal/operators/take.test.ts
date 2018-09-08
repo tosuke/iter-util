@@ -1,4 +1,4 @@
-import { pipe, delay, toArray, take } from '@'
+import { pipe, toArray, take } from '@'
 
 test('take iterable', () => {
   const res = [0, 1, 2, 3][pipe](
@@ -6,13 +6,4 @@ test('take iterable', () => {
     toArray(),
   )
   expect(res).toEqual([0, 1])
-})
-
-test('take asyncIterable', async () => {
-  const res = [0, 1, 2, 3][pipe](
-    delay(100),
-    take(2),
-    toArray(),
-  )
-  await expect(res).resolves.toEqual([0, 1])
 })

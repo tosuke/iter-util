@@ -1,16 +1,8 @@
-import { pipe, delay, toObject } from '@'
+import { pipe, toObject } from '@'
 
 test('toObject() sync', () => {
   const res = objectEntries({ a: 1, b: 2 })[pipe](toObject())
   expect(res).toEqual({ a: 1, b: 2 })
-})
-
-test('toObject() async', async () => {
-  const res = objectEntries({ a: 1, b: 2 })[pipe](
-    delay(100),
-    toObject(),
-  )
-  await expect(res).resolves.toEqual({ a: 1, b: 2 })
 })
 
 function* objectEntries<T>(obj: { [key: string]: T }): Iterable<[string, T]> {

@@ -40,12 +40,6 @@ declare global {
   interface IterableIterator<T> {
     [pipe]: typeof pipeFunc
   }
-  interface AsyncIterable<T> {
-    [pipe]: typeof pipeFunc
-  }
-  interface AsyncIterableIterator<T> {
-    [pipe]: typeof pipeFunc
-  }
 }
 
 ;(Object.prototype as any)[pipe] = pipeFunc

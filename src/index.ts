@@ -1,11 +1,8 @@
 // symbols
-import './internal/symbols/asyncIterator'
 export * from './internal/symbols/pipe'
 
 // factories
 export * from './internal/factories/from'
-export * from './internal/factories/interval'
-export * from './internal/factories/timer'
 export * from './internal/factories/range'
 export * from './internal/factories/recurrence'
 export * from './internal/factories/repeat'
@@ -24,9 +21,5 @@ export * from './internal/operators/reduce'
 export * from './internal/operators/scan'
 export * from './internal/operators/take'
 export * from './internal/operators/skip'
-export * from './internal/operators/delay'
 export * from './internal/operators/flatMap'
 export * from './internal/operators/flatAll'
-export * from './internal/operators/concatMap'
-export * from './internal/operators/concatAll'
-export * from '@/internal/operators/mergeMap'
