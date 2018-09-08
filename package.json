@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@tosuke/prettier-config": "1.0.1",
-    "@types/jest": "23.3.1",
+    "@types/jest": "23.3.2",
     "@types/node": "10.5.3",
     "codecov": "3.0.4",
     "husky": "1.0.0-rc.13",
