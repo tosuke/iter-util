@@ -10,9 +10,5 @@ module.exports = {
     '^@$': '<rootDir>/src',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  globals: {
-    'ts-jest': {
-      skipBabel: true,
-    },
-  },
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
 }
