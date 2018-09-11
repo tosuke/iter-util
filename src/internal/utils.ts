@@ -6,7 +6,3 @@ export type MonoOperatorFunction<T> = UnaryOperatorFunction<T, T>
 export function isIterable<T = any>(x: any): x is Iterable<T> {
   return x[Symbol.iterator] != null
 }
-
-export function sleep(ms: number): Promise<void> {
-  return new Promise<void>(res => setTimeout(res, ms))
-}
