@@ -3561,9 +3561,9 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
-ts-jest@23.10.0-beta.4:
-  version "23.10.0-beta.4"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-23.10.0-beta.4.tgz#a13e66be70e04c6d135134e0da2fcdb6cc0bf37d"
+ts-jest@23.10.0-beta.5:
+  version "23.10.0-beta.5"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-23.10.0-beta.5.tgz#fa61f003158ca70f8aba584f7196a6c2ea7bfc6b"
   dependencies:
     bs-logger "^0.2.5"
     buffer-from "^1.1.1"
