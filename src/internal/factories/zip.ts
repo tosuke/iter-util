@@ -1,22 +1,7 @@
-type UnIter<Iter> = Iter extends Iterable<infer S> ? S : never
-type ZipType<Tuple extends any[]> = Iterable<Tuple>
-type AI = Iterable<any>
+type Unwrap<Iter> = Iter extends Iterable<infer S> ? S : never
+type ZipIterable<Iters extends Iterable<any>[]> = Iterable<{ [P in keyof Iters]: Unwrap<Iters[P]> }>
 
-export function zip<A extends AI>(...iter: [A]): ZipType<[UnIter<A>]>
-export function zip<A extends AI, B extends AI>(...iter: [A, B]): ZipType<[UnIter<A>, UnIter<B>]>
-export function zip<A extends AI, B extends AI, C extends AI>(
-  ...iter: [A, B, C]
-): ZipType<[UnIter<A>, UnIter<B>, UnIter<C>]>
-export function zip<A extends AI, B extends AI, C extends AI, D extends AI>(
-  ...iter: [A, B, C, D]
-): ZipType<[UnIter<A>, UnIter<B>, UnIter<C>, UnIter<D>]>
-export function zip<A extends AI, B extends AI, C extends AI, D extends AI, E extends AI>(
-  ...iter: [A, B, C, D, E]
-): ZipType<[UnIter<A>, UnIter<B>, UnIter<C>, UnIter<D>, UnIter<E>]>
-export function zip<A extends AI, B extends AI, C extends AI, D extends AI, E extends AI, F extends AI>(
-  ...iter: [A, B, C, D, E, F]
-): ZipType<[UnIter<A>, UnIter<B>, UnIter<C>, UnIter<D>, UnIter<E>, UnIter<F>]>
-export function zip<TS extends any[]>(...iter: Iterable<any>[]): Iterable<TS> {
+export function zip<Iters extends Iterable<any>[]>(...iter: Iters): ZipIterable<Iters> {
   return zipSync(iter as Iterable<any>[])
 }
 
