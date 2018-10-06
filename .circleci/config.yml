@@ -3,7 +3,6 @@ workflows:
   version: 2
   test:
     jobs:
-      - test-node6
       - test-node8
       - test-node10
 
@@ -59,10 +58,6 @@ _test-and-coverage-body: &test-and-coverage-body
         command: yarn coverage
 
 jobs:
-  test-node6:
-    <<: *test-body
-    docker:
-      - image: node:6
   test-node8:
     <<: *test-body
     docker:
