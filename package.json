@@ -44,7 +44,7 @@
     "@types/jest": "23.3.3",
     "@types/node": "10.11.7",
     "codecov": "3.1.0",
-    "husky": "1.1.0",
+    "husky": "1.1.2",
     "jest": "23.6.0",
     "lint-staged": "7.3.0",
     "npm-run-all": "4.1.3",
