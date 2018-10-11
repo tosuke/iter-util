@@ -30,10 +30,10 @@
   resolved "https://registry.yarnpkg.com/@tosuke/prettier-config/-/prettier-config-1.0.1.tgz#e1c011aeddb4ccaa8b81a92974e8b6c3cf650f41"
   integrity sha512-UfGrDjryhEf2OUnRHxAD5DJd/C3yUMtQJUxRObeQ2lDwHGbG3r4lXO6MGaiCuiluApkbpbH7Jiu8buDL2MoK9A==
 
-"@types/jest@23.3.3":
-  version "23.3.3"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.3.tgz#246ebcc52771d2327bb8e37aa971b412d9dc4237"
-  integrity sha512-G6EBrbjWDfmIpYu8UcRBOhwtDiYaLj5N5jUR5rx0YvbKxRBhXPZVLUmtfShewSUNKiQwpHavpML69a2WMbIlEQ==
+"@types/jest@23.3.5":
+  version "23.3.5"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.5.tgz#870a1434208b60603745bfd214fc3fc675142364"
+  integrity sha512-3LI+vUC3Wju28vbjIjsTKakhMB8HC4l+tMz+Z8WRzVK+kmvezE5jcOvKtBpznWSI5KDLFo+FouUhpTKoekadCA==
 
 "@types/node@10.11.7":
   version "10.11.7"
