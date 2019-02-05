@@ -1,45 +1,43 @@
 type UF<T, U> = (x: T) => U
-function pipeFunc<T>(this: T): T
-function pipeFunc<T, A>(this: T, ...funcs: [UF<T, A>]): A
-function pipeFunc<T, A, B>(this: T, ...funcs: [UF<T, A>, UF<A, B>]): B
-function pipeFunc<T, A, B, C>(this: T, ...funcs: [UF<T, A>, UF<A, B>, UF<B, C>]): C
-function pipeFunc<T, A, B, C, D>(this: T, ...funcs: [UF<T, A>, UF<A, B>, UF<B, C>, UF<C, D>]): D
-function pipeFunc<T, A, B, C, D, E>(this: T, ...funcs: [UF<T, A>, UF<A, B>, UF<B, C>, UF<C, D>, UF<D, E>]): E
-function pipeFunc<T, A, B, C, D, E, F>(
-  this: T,
-  ...funcs: [UF<T, A>, UF<A, B>, UF<B, C>, UF<C, D>, UF<D, E>, UF<E, F>]
-): F
-function pipeFunc<T, A, B, C, D, E, F, G>(
-  this: T,
-  ...funcs: [UF<T, A>, UF<A, B>, UF<B, C>, UF<C, D>, UF<D, E>, UF<E, F>, UF<F, G>]
-): G
-function pipeFunc<T, A, B, C, D, E, F, G, H>(
-  this: T,
-  ...funcs: [UF<T, A>, UF<A, B>, UF<B, C>, UF<C, D>, UF<D, E>, UF<E, F>, UF<F, G>, UF<G, H>]
-): H
-function pipeFunc<T, A, B, C, D, E, F, G, H, I>(
-  this: T,
-  ...funcs: [UF<T, A>, UF<A, B>, UF<B, C>, UF<C, D>, UF<D, E>, UF<E, F>, UF<F, G>, UF<G, H>, UF<H, I>]
-): I
+
 function pipeFunc<T, U>(this: T, ...funcs: UF<any, any>[]): U {
   return funcs.reduce<any>((val, uf) => uf(val), this) as U
 }
 
+type PipeT = {
+  <T>(this: T): T
+  <T, A>(this: T, ...f: [UF<T, A>]): A
+  <T, A, B>(this: T, ...f: [UF<T, A>, UF<A, B>]): B
+  <T, A, B, C>(this: T, ...f: [UF<T, A>, UF<A, B>, UF<B, C>]): C
+  <T, A, B, C, D>(this: T, ...f: [UF<T, A>, UF<A, B>, UF<B, C>, UF<C, D>]): D
+  <T, A, B, C, D, E>(this: T, ...f: [UF<T, A>, UF<A, B>, UF<B, C>, UF<C, D>, UF<D, E>]): E
+  <T, A, B, C, D, E, F>(this: T, ...f: [UF<T, A>, UF<A, B>, UF<B, C>, UF<C, D>, UF<D, E>, UF<E, F>]): F
+}
+
 export const pipe = Symbol('pipe')
 
+interface Pipable {
+  [pipe]: PipeT
+}
+
 declare global {
-  interface Object {
-    [pipe]: typeof pipeFunc
+  interface Object extends Pipable {
+    [pipe]: PipeT
   }
-  interface Array<T> {
-    [pipe]: typeof pipeFunc
+  interface Array<T> extends Pipable {
+    [pipe]: PipeT
   }
-  interface Iterable<T> {
-    [pipe]: typeof pipeFunc
+  interface Iterable<T> extends Pipable {
+    [pipe]: PipeT
   }
-  interface IterableIterator<T> {
-    [pipe]: typeof pipeFunc
+  interface IterableIterator<T> extends Pipable {
+    [pipe]: PipeT
   }
 }
 
-;(Object.prototype as any)[pipe] = pipeFunc
+Object.defineProperty(Object.prototype, pipe, {
+  configurable: false,
+  enumerable: false,
+  writable: false,
+  value: pipeFunc,
+})
