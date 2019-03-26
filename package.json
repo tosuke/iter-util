@@ -57,7 +57,7 @@
     "node": ">=6.12.2"
   },
   "dependencies": {
-    "semver": "^5.5.0",
+    "semver": "^6.0.0",
     "tslib": "^1.9.3"
   }
 }
